@@ -1,0 +1,41 @@
+# 构建产物
+build/
+dist/
+out/
+.gradle/
+run/
+logs/
+
+# 历史发布包（体积大，不进仓库）
+*.jar
+!libs/*.jar
+*.zip
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+nbproject/
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 临时与备份
+*.log
+*.tmp
+*.bak
+*.bak*
+*~
+*.orig
+*.rej
+
+# Java
+hs_err_pid*.log
+replay_pid*.log

@@ -1,0 +1,29 @@
+{
+  "_说明": "远洋规则。没写的字段沿用 BotConfig 默认值。",
+
+  "coins": {
+    "create_currency_shops:copper_coin": 1,
+    "create_currency_shops:iron_coin": 5,
+    "create_currency_shops:zinc_coin": 10,
+    "create_currency_shops:brass_coin": 50,
+    "create_currency_shops:gold_coin": 100,
+    "create_currency_shops:netherite_coin": 500
+  },
+
+  "returnCoin": {
+    "item": "create_currency_shops:copper_coin",
+    "budgetPermille": 200,
+    "maxCount": 512
+  },
+
+  "share": {
+    "issuerMaxPermille": 400,
+    "npcJoinAfterPermille": 300,
+    "maxConcurrent": 2
+  },
+
+  "tariff": {
+    "exportPermille": 80,
+    "importPermille": 40
+  }
+}

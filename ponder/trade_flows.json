@@ -1,0 +1,84 @@
+{
+  "modId": "kjbankbridge",
+  "tag": "tickets",
+  "tagTitle": "票据与市场",
+  "tagDescription": "仓单、提单、订单该怎么用",
+  "_note": "这是给 Ponder 动画编译工具用的剧本格式。字段名可按你的工具改，我先按最直观的方式定义：tick 用 20/s，op 是动作类型。",
+
+  "scenes": [
+    {
+      "id": "trade_face_to_face",
+      "title": "两人站在一起，钱货两清",
+      "item": "kjbankbridge:blank_form",
+      "durationTicks": 370,
+      "basePlate": { "x": 0, "z": 0, "size": 5 },
+      "blocks": [
+        { "name": "chest",  "pos": [2, 1, 2], "block": "minecraft:chest" },
+        { "name": "seller", "pos": [1, 1, 2], "block": "minecraft:barrier", "_comment": "站位标记，实际用假人" },
+        { "name": "buyer",  "pos": [3, 1, 2], "block": "minecraft:barrier" }
+      ],
+      "beats": [
+        { "t": 0,  "op": "showBasePlate" },
+        { "t": 10, "op": "show", "target": "chest", "face": "DOWN" },
+        { "t": 30, "op": "text", "text": "买卖双方站在 8 格内", "dur": 80, "pointAt": "seller", "place": "nearTarget" },
+        { "t": 120, "op": "text", "text": "可以直接面对面交易：钱一扣，货一给", "dur": 80, "pointAt": "chest", "place": "nearTarget" },
+        { "t": 210, "op": "text", "text": "不需要绑定提货点，也不用等物流", "dur": 70, "place": "independent" },
+        { "t": 290, "op": "text", "text": "距离超过 8 格就自动改走物流", "dur": 70, "pointAt": "buyer", "place": "nearTarget" },
+        { "t": 370, "op": "finish" }
+      ]
+    },
+
+    {
+      "id": "trade_escrow",
+      "title": "托管交易：钱先押着，货到再付",
+      "item": "kjbankbridge:store_receipt",
+      "durationTicks": 640,
+      "basePlate": { "x": 0, "z": 0, "size": 7 },
+      "blocks": [
+        { "name": "seller", "pos": [1, 1, 2], "block": "minecraft:barrier" },
+        { "name": "chest",  "pos": [3, 1, 2], "block": "minecraft:chest" },
+        { "name": "buyer",  "pos": [5, 1, 2], "block": "minecraft:barrier" },
+        { "name": "port",   "pos": [5, 1, 1], "block": "create:package_frogport" }
+      ],
+      "beats": [
+        { "t": 0,  "op": "showBasePlate" },
+        { "t": 10, "op": "showRegion", "from": [1, 0, 1], "to": [5, 2, 3], "face": "DOWN" },
+        { "t": 35, "op": "text", "text": "卖家挂单：写明物品、数量、单价", "dur": 80, "pointAt": "seller", "place": "nearTarget" },
+        { "t": 95, "op": "text", "text": "货仍然留在卖家手上", "dur": 60, "pointAt": "chest", "place": "nearTarget" },
+        { "t": 160, "op": "text", "text": "买家锁单：钱从钱包扣走，进托管", "dur": 80, "pointAt": "buyer", "place": "nearTarget" },
+        { "t": 220, "op": "text", "text": "系统生成一张待发货订单", "dur": 60, "place": "independent" },
+        { "t": 285, "op": "text", "text": "卖家发货：货打包成包裹", "dur": 80, "pointAt": "chest", "place": "nearTarget" },
+        { "t": 345, "op": "text", "text": "通过机械动力物流送到买家提货点", "dur": 80, "pointAt": "port", "place": "nearTarget" },
+        { "t": 410, "op": "text", "text": "买家取到货后确认收货", "dur": 80, "pointAt": "buyer", "place": "nearTarget" },
+        { "t": 470, "op": "text", "text": "托管款才付给卖家", "dur": 70, "place": "independent" },
+        { "t": 550, "op": "text", "text": "卖家 30 分钟不发货，系统自动取消并退款", "dur": 90, "place": "independent" },
+        { "t": 640, "op": "finish" }
+      ]
+    },
+
+    {
+      "id": "trade_package_route",
+      "title": "包裹怎么从卖家走到蛙港",
+      "item": "kjbankbridge:bill_of_lading",
+      "durationTicks": 410,
+      "basePlate": { "x": 0, "z": 0, "size": 9 },
+      "blocks": [
+        { "name": "packager", "pos": [1, 1, 2], "block": "create:packager" },
+        { "name": "mid",      "pos": [4, 2, 2], "block": "create:chain_conveyor" },
+        { "name": "port",     "pos": [7, 1, 2], "block": "create:package_frogport" }
+      ],
+      "beats": [
+        { "t": 0,  "op": "showBasePlate" },
+        { "t": 10, "op": "showRegion", "from": [1, 0, 1], "to": [7, 3, 3], "face": "DOWN" },
+        { "t": 40, "op": "text", "text": "货先被打包成 Create 包裹", "dur": 70, "pointAt": "packager", "place": "nearTarget" },
+        { "t": 95, "op": "text", "text": "包裹上写着收件地址", "dur": 60, "pointAt": "packager", "place": "nearTarget" },
+        { "t": 150, "op": "text", "text": "包裹交给物流目标，沿锁链运输", "dur": 70, "pointAt": "mid", "place": "nearTarget" },
+        { "t": 210, "op": "animatePackage", "from": [2, 2, 2], "to": [6, 2, 2], "dur": 40 },
+        { "t": 260, "op": "text", "text": "到达蛙港后，包裹进蛙港的库存", "dur": 70, "pointAt": "port", "place": "nearTarget" },
+        { "t": 315, "op": "text", "text": "收件人打开蛙港就能取走", "dur": 60, "pointAt": "port", "place": "nearTarget" },
+        { "t": 355, "op": "text", "text": "提货点所在区块没加载，包裹会排队等", "dur": 80, "place": "independent" },
+        { "t": 410, "op": "finish" }
+      ]
+    }
+  ]
+}

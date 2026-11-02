@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mixins]]
+config = "tangtueconomical.mixins.json"
+
+[[mods]]
+modId = "kjbankbridge"
+version = "6.9.329"
+displayName = "TangtuEconomical"
+authors = "tangtu"
+description = '''
+唐兔国经济系统（TangtuEconomical）：现货市场 / 订单 / 挂单 / 票据 / 提单 / 机器人做市 / K 线 / 钱包 / 税收 / 经济体检。
+
+全部自建，不依赖任何外部经济 mod：
+  钱包    config/kjbb/wallet.txt
+  行情    config/kjbb/kline.txt
+  机器人  config/kjbb/bots.json
+  数据包  <存档>/datapacks/tangtu/.../kjbb/
+对 KubeJS 暴露 BankBridge / MarketBridge / ShopBridge。
+'''
+
+[[dependencies.kjbankbridge]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kjbankbridge]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kjbankbridge]]
+modId = "kubejs"
+type = "required"
+versionRange = "[2101,)"
+ordering = "AFTER"
+side = "BOTH"

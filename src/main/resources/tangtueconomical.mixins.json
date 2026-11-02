@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.tangtu.kjbb.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PackageOrderRequestPacketMixin"
+  ],
+  "client": [
+    "LanguageMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

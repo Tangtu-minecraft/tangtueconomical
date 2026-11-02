@@ -1,0 +1,26 @@
+{
+  "_说明": "交易黑名单：任意命中即禁止上架。mods=整个模组封杀，keywords=物品名包含即拦，items=精确 id。",
+
+  "mods": [
+    "waystones",
+    "sophisticatedbackpacks"
+  ],
+
+  "keywords": [
+    "upgrade",
+    "backpack",
+    "spawn_egg",
+    "command_block",
+    "structure_block",
+    "barrier",
+    "bedrock",
+    "debug_stick",
+    "waystone",
+    "portstone",
+    "sharestone",
+    "warp_stone",
+    "attuned_shard"
+  ],
+
+  "items": []
+}
