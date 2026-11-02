@@ -8,8 +8,10 @@ logs/
 
 # 历史发布包（体积大，不进仓库）
 *.jar
-!libs/*.jar
 *.zip
+
+# libs 里的第三方依赖也不进仓库（见 libs/README.md）
+libs/*.jar
 
 # IDE
 .idea/
